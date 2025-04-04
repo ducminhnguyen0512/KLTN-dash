@@ -5,7 +5,7 @@ import yfinance as yf
 import plotly.express as px
 import plotly.graph_objects as go
 from scipy.optimize import minimize
-
+from datetime import date
 # Application title with style
 st.markdown("<h1 style='text-align: center; color: #1f77b4;'>Investment Portfolio Recommendation Dashboard</h1>", unsafe_allow_html=True)
 
