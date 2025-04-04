@@ -198,18 +198,7 @@ fig_corr.update_layout(
     plot_bgcolor='rgba(0,0,0,0)',
     paper_bgcolor='rgba(0,0,0,0)'
 )
-st.subheader("Log Returns Query (last 10 rows)")
-st.dataframe(log_returns_query.tail(10))
 
-st.subheader("Benchmark Returns (last 10 rows)")
-st.dataframe(benchmark_returns.tail(10))
-
-st.subheader("Portfolio Cumulative Returns (last 10 rows)")
-st.dataframe(portfolio_cumulative.tail(10))
-
-st.subheader("Benchmark Cumulative Returns (last 10 rows)")
-st.dataframe(benchmark_cumulative.tail(10))
-st.plotly_chart(fig_corr, use_container_width=True)
 
 # Compare Cumulative Returns
 portfolio_cumulative = (log_returns_query + 1).cumprod().dot(optimal_weights)
