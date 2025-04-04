@@ -28,18 +28,22 @@ def load_data():
     df_sp600.index = pd.to_datetime(df_sp600.index).strftime('%Y-%m-%d')
     
     combined_df = pd.concat([df_sp500, df_sp400, df_sp600], axis=1)
+    
+    # Lấy ngày hiện tại làm giá trị end
+    end_date = date.today()
 
-    sp500_index = yf.download("^GSPC", start="2019-01-01", end="2025-03-29")
+    # Tải dữ liệu từ yfinance với end là ngày hiện tại
+    sp500_index = yf.download("^GSPC", start="2019-01-01", end=end_date)
     sp500_close = sp500_index['Close']
-    sp400_index = yf.download("^SP400", start="2019-01-01", end="2025-03-29")
+    sp400_index = yf.download("^SP400", start="2019-01-01", end=end_date)
     sp400_close = sp400_index['Close']
-    sp600_index = yf.download("^SP600", start="2019-01-01", end="2025-03-29")
+    sp600_index = yf.download("^SP600", start="2019-01-01", end=end_date)
     sp600_close = sp600_index['Close']
-    sp1500_index = yf.download("^SP1500", start="2019-01-01", end="2025-03-29")
+    sp1500_index = yf.download("^SP1500", start="2019-01-01", end=end_date)
     sp1500_close = sp1500_index['Close']
-    NYA_index = yf.download("^NYA", start="2019-01-01", end="2025-03-29")
+    NYA_index = yf.download("^NYA", start="2019-01-01", end=end_date)
     NYA_close = NYA_index['Close']
-    IXIC_index = yf.download("^IXIC", start="2019-01-01", end="2025-03-29")
+    IXIC_index = yf.download("^IXIC", start="2019-01-01", end=end_date)
     IXIC_close = IXIC_index['Close']
 
     combined_market_df = pd.concat([sp500_close, sp400_close, sp600_close, sp1500_close, NYA_close, IXIC_close], axis=1)
@@ -103,7 +107,7 @@ st.dataframe(stock_port.style.format({
 }).background_gradient(cmap='Blues', subset=['Yearly Return', 'Yearly Std']), height=300)
 
 # Fetch risk-free rate data
-risk_free_rate_data = yf.download('^TNX', start="2025-01-01", end="2025-03-29")
+risk_free_rate_data = yf.download('^TNX', start="2025-01-01", end=end_date)
 risk_free_rate = float(risk_free_rate_data['Close'].values[-1] / 100)
 
 # Portfolio optimization
