@@ -107,6 +107,7 @@ st.dataframe(stock_port.style.format({
 }).background_gradient(cmap='Blues', subset=['Yearly Return', 'Yearly Std']), height=300)
 
 # Fetch risk-free rate data
+end_date = date.today()
 risk_free_rate_data = yf.download('^TNX', start="2025-01-01", end=end_date)
 risk_free_rate = float(risk_free_rate_data['Close'].values[-1] / 100)
 
