@@ -199,12 +199,10 @@ fig_corr.update_layout(
     paper_bgcolor='rgba(0,0,0,0)'
 )
 
-
 # Compare Cumulative Returns
 portfolio_cumulative = (log_returns_query + 1).cumprod().dot(optimal_weights)
 benchmark_returns = np.log(combined_market_df / combined_market_df.shift(1))
 benchmark_cumulative = (benchmark_returns + 1).cumprod()
-portfolio_cumulative
 
 st.markdown("<h2 style='color: #d62728;'>Cumulative Returns Comparison</h2>", unsafe_allow_html=True)
 selected_benchmarks = st.multiselect("Select indices to compare:", list(combined_market_df.columns))
