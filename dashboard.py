@@ -198,7 +198,7 @@ fig_corr.update_layout(
     plot_bgcolor='rgba(0,0,0,0)',
     paper_bgcolor='rgba(0,0,0,0)'
 )
-
+st.plotly_chart(fig_corr, use_container_width=True)
 # Compare Cumulative Returns
 portfolio_cumulative = (log_returns_query + 1).cumprod().dot(optimal_weights)
 benchmark_returns = np.log(combined_market_df / combined_market_df.shift(1))
